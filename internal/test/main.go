@@ -10,8 +10,8 @@ import (
 
 func main() {
 
-	err := zaplogback.RegisterLogbackEncoder("zaplogback", `%date{%Y-%m-%d %H:%M:%S.%3f} %level{upper} %caller{} %x{tid:["tid":$0]} %message %fields`)
-
+	err := zaplogback.RegisterLogbackEncoder("zaplogback", `%date{%Y-%m-%d %H:%M:%S.%3f} %level{upper} %caller{short} %x{tid:["tid":$0]} %message %fields`)
+	
 	if err != nil {
 		fmt.Println(err)
 		return

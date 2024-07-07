@@ -63,11 +63,13 @@ Then you use new **Encoding** in zap's Config
 
 日志将按照不同的action出现顺序进行输出，对部分action, 可以进一步定义配置，比如日期格式，level 是否大写等
 
+若进一步配置config， 覆盖zap的默认行为
+
 You can change any order of **action** to control log output format
 
 syntax:  %action{config}
 
-config is optional
+config is optional， if use config, overwrite zap's default setting
 
 ### date
 
@@ -77,6 +79,7 @@ date format configs, use strftime format
 
 example:
 
+%date                use zap's setting
 %date{%Y-%m-%d %H:%M:%S.%3f}    output: 2024-07-31 12:34:56.789
 
 ref:
@@ -127,13 +130,15 @@ same as zaplog's default log encoder:
 
 example:
 
-%level            lower case   info
+%level            use default setting
 
 %level{upper}     upper case   INFO
 
 %level{capital}   upper case   INFO
 
 %level{lower}     lower case   info
+
+%level{invald setting} lower case by default
 
 ### caller
 
@@ -143,9 +148,13 @@ same as zaplog's default caller encoder
 
 example: 
 
-%caller              defualt, short filepath of caller
+%caller              defualt caller setting
 
 %caller{full}        full filepath of caller
+
+%caller{short}       short filepath of caller
+
+%caller{other config} use short filepath of caller
 
 ### message
 

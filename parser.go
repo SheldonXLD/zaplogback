@@ -140,7 +140,6 @@ func Parse_compile_log_format(log_format string) LogbackConfig {
 		remind := m[named_idx["remind"]]
 
 		config_match := config_regex_pattern.FindSubmatch(config)
-
 		if len(config_match) > 0 {
 			action_config = string(config_match[1])
 		}
@@ -216,8 +215,11 @@ func LevelEncoderOf(level_type string) zapcore.LevelEncoder {
 
 func CallerEncoderOf(caller_type string) zapcore.CallerEncoder {
 	switch caller_type {
+
 	case "full":
 		return zapcore.FullCallerEncoder
+	case "short":
+		fallthrough
 	default:
 		return zapcore.ShortCallerEncoder
 	}
